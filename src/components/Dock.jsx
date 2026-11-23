@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { useLang } from "../lang";
 
 // Доод талын хөвөгч удирдлага: Лаб · Сайт/Түүх солих · дуу
 // + баруун захад хуудсыг хэр гүйлгэснийг харуулах шугамын хэмжүүр
 export default function Dock({ mode, onMode, onLab, sound, onSound }) {
+  const { t, lang, setLang } = useLang();
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
@@ -20,13 +22,16 @@ export default function Dock({ mode, onMode, onLab, sound, onSound }) {
   return (
     <>
       <div className="dock">
-        <button className="dock-icon" onClick={onLab} title="Лаб терминал" aria-label="Лаб терминал">&lt;/&gt;</button>
+        <button className="dock-icon" onClick={onLab} title={t.lab} aria-label={t.lab}>&lt;/&gt;</button>
         <div className="seg">
-          <button className={mode === "site" ? "on" : ""} onClick={() => onMode("site")}>Сайт</button>
-          <button className={mode === "story" ? "on" : ""} onClick={() => onMode("story")}>Түүх</button>
+          <button className={mode === "site" ? "on" : ""} onClick={() => onMode("site")}>{t.site}</button>
+          <button className={mode === "story" ? "on" : ""} onClick={() => onMode("story")}>{t.story}</button>
         </div>
-        <span className="dock-lang">МН</span>
-        <button className={`dock-icon sound ${sound ? "on" : ""}`} onClick={onSound} title="Дуу" aria-label="Дуу асаах/унтраах">
+        <div className="dock-lang" role="group" aria-label="Хэл / Language">
+          <button className={lang === "mn" ? "on" : ""} onClick={() => setLang("mn")}>МН</button>
+          <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
+        </div>
+        <button className={`dock-icon sound ${sound ? "on" : ""}`} onClick={onSound} title={t.sound} aria-label={t.sound}>
           <i /><i /><i />
         </button>
       </div>

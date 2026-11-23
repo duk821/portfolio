@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { projects, nowBuilding } from "../data";
+import { useLang } from "../lang";
 import DotCanvas from "../particles/DotCanvas";
 
 // "Одоо хийж буй" — accordion картууд.
 // Идэвхтэй карт өнгөтэй, том дэлгэгдэж цэгэн зурагтай; бусад нь нарийн, нэр нь босоо.
 // Карт дээр дарах (эсвэл хулганаар очих) үед тэр нь дэлгэгдэнэ.
 export default function NowBuilding() {
+  const { t, data: { projects, nowBuilding } } = useLang();
   const [active, setActive] = useState(0);
   const cards = nowBuilding.cards.map((c) => ({ ...c, p: projects.find((x) => x.id === c.projectId) }));
 
@@ -41,8 +42,8 @@ export default function NowBuilding() {
                 <div className="acc-foot">
                   <span>{c.building && <b className="pulse" />}{c.status}</span>
                   {c.p.demo
-                    ? <a href={c.p.demo} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>Сайт үзэх ↗</a>
-                    : c.building && <span className="soon">Удахгүй нээгдэнэ</span>}
+                    ? <a href={c.p.demo} target="_blank" rel="noreferrer" onClick={(e) => e.stopPropagation()}>{t.visitSite}</a>
+                    : c.building && <span className="soon">{t.comingSoon}</span>}
                 </div>
               </div>
             </div>

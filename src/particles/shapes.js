@@ -173,6 +173,7 @@ export async function buildShapes(n, photo) {
     code: text("</>", "bold 70px Inter, sans-serif"),
     paddle: paddle(),
     name: text("Дөлгөөн", "bold 40px Inter, sans-serif"),
+    name_en: text("Dulguun", "bold 40px Inter, sans-serif"),
     scatter: Array.from({ length: 400 }, () => [Math.random() * 2 - 1, Math.random() * 2 - 1, 0.4]),
   };
   const out = {};

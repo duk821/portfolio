@@ -1,10 +1,11 @@
 import { useEffect, useRef } from "react";
-import { story } from "../data";
+import { useLang } from "../lang";
 import { chime } from "../audio";
 
 // Түүх горим: бүлэг бүр дэлгэц дүүрэн. Гүйлгэхэд идэвхтэй бүлэг солигдож,
 // тоосонцор шинэ дүрс рүү урсана (дүрсийг App дахь ParticleField зурна).
 export default function Story({ active, onActive, onFinish }) {
+  const { t, data: { story } } = useLang();
   const refs = useRef([]);
 
   useEffect(() => {
@@ -27,7 +28,7 @@ export default function Story({ active, onActive, onFinish }) {
       <div className="story-hud mono">
         <span>{String(active).padStart(2, "0")} / {String(story.length - 1).padStart(2, "0")}</span>
         <div className="progress"><i style={{ width: `${(active / (story.length - 1)) * 100}%` }} /></div>
-        <button onClick={onFinish}>Сайт руу алгасах →</button>
+        <button onClick={onFinish}>{t.skipToSite}</button>
       </div>
 
       {story.map((ch, i) => (
@@ -39,8 +40,8 @@ export default function Story({ active, onActive, onFinish }) {
               <span className="dim">{ch.lines[0].split("|")[1]}</span>
             </h2>
             <p className="chapter-sub">{ch.lines[1]}</p>
-            {i === 0 && <p className="mono hint">↓ гүйлгэ</p>}
-            {i === story.length - 1 && <button className="enter" onClick={onFinish}>Сайтыг үзэх <em>→</em></button>}
+            {i === 0 && <p className="mono hint">{t.scrollHint}</p>}
+            {i === story.length - 1 && <button className="enter" onClick={onFinish}>{t.enterSite} <em>→</em></button>}
           </div>
         </section>
       ))}

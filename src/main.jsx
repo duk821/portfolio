@@ -9,10 +9,13 @@ import "@fontsource/cormorant-garamond/400.css";
 import "@fontsource/cormorant-garamond/400-italic.css";
 import "@fontsource/cormorant-garamond/500.css";
 import App from "./App";
+import { LangProvider } from "./lang";
 import "./styles.css";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <App />
+    <LangProvider>
+      <App />
+    </LangProvider>
   </StrictMode>
 );

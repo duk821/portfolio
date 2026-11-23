@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { story } from "./data";
+import { useLang } from "./lang";
 import { buildShapes } from "./particles/shapes";
 import ParticleField from "./particles/ParticleField";
 import Gate from "./components/Gate";
@@ -24,6 +24,7 @@ export default function App() {
   const [chapter, setChapter] = useState(0);
   const [sound, setSound] = useState(false);
   const [lab, setLab] = useState(false);
+  const { data: { story } } = useLang();
   const [snow, setSnow] = useState(false);
 
   // Тоосонцрын дүрсүүдийг нэг удаа бэлдэнэ (гар утсан дээр цөөн цэг)

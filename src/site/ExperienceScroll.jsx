@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { experience } from "../data";
+import { useLang } from "../lang";
 
 // ================================================================
 //  Туршлага — зүүн талд том он "наалдаж" (sticky) үлдэнэ,
@@ -19,6 +19,7 @@ function RollingYear({ value }) {
 }
 
 export default function ExperienceScroll() {
+  const { t, data: { experience } } = useLang();
   // Он дарааллаар (хуучнаас шинэ рүү)
   const items = [...experience].reverse();
   const [active, setActive] = useState(0);
@@ -54,8 +55,8 @@ export default function ExperienceScroll() {
     <div className="xp">
       <div className="xp-sticky">
         <RollingYear value={cur.period.slice(0, 4)} />
-        <p className="xp-step">{active + 1}-р алхам <span>/ {items.length}</span></p>
-        <p className="xp-side mono"><i /> (02) Туршлага</p>
+        <p className="xp-step">{t.step(active + 1)} <span>/ {items.length}</span></p>
+        <p className="xp-side mono"><i /> (02) {t.sec.work}</p>
       </div>
 
       <ol className="xp-list" ref={listRef}>
