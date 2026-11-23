@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { me, projects as allProjects, contacts, nowBuilding } from "../data";
+import { me, projects as allProjects, contacts, nowBuilding, cv } from "../data";
 import Reveal from "../components/Reveal";
 import Thumb from "../components/Thumb";
 import ExperienceScroll from "./ExperienceScroll";
@@ -46,7 +46,10 @@ export default function Site({ onStory }) {
         <div className="snav-links">
           {NAV.map(([id, label], i) => <a key={id} href={`#${id}`}><span>{String(i + 1).padStart(2, "0")}</span>{label}</a>)}
         </div>
-        <button className="snav-story" onClick={onStory}>▶ Түүх үзэх</button>
+        <div className="snav-actions">
+          <a className="snav-cv" href={cv.file} download>CV ↓</a>
+          <button className="snav-story" onClick={onStory}>▶ Түүх үзэх</button>
+        </div>
       </nav>
 
       {/* 00 — Нүүр: нэр, чиглэл, нэг өгүүлбэр. Баруун талд тоосонцрон хөрөг (App-д зурагдана) */}
@@ -149,6 +152,23 @@ export default function Site({ onStory }) {
             ))}
           </div>
         </Reveal>
+
+        {/* CV татах */}
+        <Reveal className="cv-card">
+          <div className="cv-icon" aria-hidden="true">
+            <span>PDF</span>
+          </div>
+          <div className="cv-text">
+            <h3>Миний CV</h3>
+            <p>Боловсрол, ажлын туршлага, ур чадвар, шагналууд — нэг хуудсанд.</p>
+            <small className="mono">{cv.info}</small>
+          </div>
+          <div className="cv-btns">
+            <a className="cv-btn" href={cv.file} download>Татах <span>↓</span></a>
+            <a className="cv-btn ghost" href={cv.file} target="_blank" rel="noreferrer">Нээж үзэх ↗</a>
+          </div>
+        </Reveal>
+
         <footer className="s-foot mono">
           <span>© {new Date().getFullYear()} Г.Дөлгөөн — Улаанбаатар</span>
           <span>React дээр гараар бүтээв · ↑↑↓↓←→←→BA</span>

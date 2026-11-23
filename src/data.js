@@ -45,6 +45,9 @@ export const me = {
   ],
 };
 
+// CV — public/ хавтсанд байгаа PDF файл
+export const cv = { file: "/Dulguun-CV.pdf", info: "1 хуудас · PDF · 170 KB" };
+
 export const contacts = [
   { label: "Имэйл",    value: "gdulguun821@gmail.com",       href: "mailto:gdulguun821@gmail.com",       icon: "✉" },
   { label: "GitHub",   value: "github.com/duk821",      href: "https://github.com/duk821",     icon: "⌥" },

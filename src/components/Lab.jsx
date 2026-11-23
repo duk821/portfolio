@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { me, projects, contacts, experience } from "../data";
+import { me, projects, contacts, experience, cv } from "../data";
 
 const HORSE = String.raw`
         ,--,
@@ -38,6 +38,7 @@ export default function Lab({ onClose, toggleSnow }) {
       "  бүтээл    — бүтээлүүдийн жагсаалт",
       "  шагнал    — спортын амжилтууд",
       "  холбоо    — холбоо барих мэдээлэл",
+      "  cv        — CV татах",
       "  очих [хэсэг] — тухайн хэсэг рүү очно (тухай | бүтээл | холбоо)",
       "  огноо, цэвэрлэх, гарах",
       "  ... бас хэдэн нууц команд бий 🤫",
@@ -47,6 +48,12 @@ export default function Lab({ onClose, toggleSnow }) {
     "бүтээл": () => projects.map((p, i) => `  ${i + 1}. ${p.title} — ${p.type}`),
     "шагнал": () => me.awards.map((a) => `  ${a.icon} ${a.place.padEnd(8)} ${a.title} ${a.year}`),
     "холбоо": () => contacts.map((c) => `  ${c.label.padEnd(10)} ${c.value}`),
+    "cv": () => {
+      const a = document.createElement("a");
+      a.href = cv.file; a.download = "";
+      a.click();
+      return ["📄 CV татаж байна... (" + cv.info + ")"];
+    },
     "огноо": () => [new Date().toLocaleString("mn-MN")],
     // ——— Нууц командууд ———
     "морь": () => HORSE.split("\n"),
