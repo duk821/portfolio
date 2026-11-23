@@ -77,6 +77,11 @@ export const roles = ["System administrator.", "Web developer.", "ISM student.",
 
 export const experience = [
   {
+    icon: "cap", title: "Rector's Scholarship", org: "University of Finance and Economics", period: "2026",
+    short: "Awarded for academic achievement.",
+    detail: "Received the University of Finance and Economics Rector's Scholarship for my academic achievements.",
+  },
+  {
     icon: "server", title: "System administrator", org: "M Bank", period: "2025 – 2026",
     short: "Looked after RHEL servers in the infrastructure department.",
     detail: "Worked on servers running RHEL and wrote the guide for upgrading their operating system from version 8 to 9. Responsible for patching vulnerabilities and keeping the servers' integrity intact.",
