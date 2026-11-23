@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { useLang } from "../lang";
+import LangSwitch from "./LangSwitch";
 
 // Доод талын хөвөгч удирдлага: Лаб · Сайт/Түүх солих · дуу
 // + баруун захад хуудсыг хэр гүйлгэснийг харуулах шугамын хэмжүүр
 export default function Dock({ mode, onMode, onLab, sound, onSound }) {
-  const { t, lang, setLang } = useLang();
+  const { t } = useLang();
   const [scroll, setScroll] = useState(0);
 
   useEffect(() => {
@@ -27,10 +28,7 @@ export default function Dock({ mode, onMode, onLab, sound, onSound }) {
           <button className={mode === "site" ? "on" : ""} onClick={() => onMode("site")}>{t.site}</button>
           <button className={mode === "story" ? "on" : ""} onClick={() => onMode("story")}>{t.story}</button>
         </div>
-        <div className="dock-lang" role="group" aria-label="Хэл / Language">
-          <button className={lang === "mn" ? "on" : ""} onClick={() => setLang("mn")}>МН</button>
-          <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
-        </div>
+        <LangSwitch />
         <button className={`dock-icon sound ${sound ? "on" : ""}`} onClick={onSound} title={t.sound} aria-label={t.sound}>
           <i /><i /><i />
         </button>

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLang } from "../lang";
+import LangSwitch from "./LangSwitch";
 
 // Эхний дэлгэц: мэндчилгээ — сайт эсвэл түүх сонгоно
 export default function Gate({ ready, onChoose, sound, onSound }) {
-  const { t, lang, setLang, data: { contacts } } = useLang();
+  const { t, data: { contacts } } = useLang();
   const [count, setCount] = useState(0);
 
   // 000 → 100 ачаалах тоолуур (дүрсүүд бэлэн болтол 99 дээр хүлээнэ)
@@ -19,10 +20,7 @@ export default function Gate({ ready, onChoose, sound, onSound }) {
 
   return (
     <div className="gate">
-      <div className="gate-lang mono">
-        <button className={lang === "mn" ? "on" : ""} onClick={() => setLang("mn")}>МН</button>
-        <button className={lang === "en" ? "on" : ""} onClick={() => setLang("en")}>EN</button>
-      </div>
+      <LangSwitch className="gate-lang" />
       <p className="mono counter">{String(count).padStart(3, "0")} <span>{loaded ? t.ready : t.loading}</span></p>
       <h1 className={loaded ? "in" : ""}>{t.gateTitle} <em>{t.gateDim}</em></h1>
 
